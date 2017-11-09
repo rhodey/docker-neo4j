@@ -40,7 +40,7 @@ tmp/.tests-pass-%: tmp/.image-id-% $(shell find test -name 'test-*') $(shell fin
 
 tmp/.image-id-%: tmp/local-context-%/.sentinel
 > mkdir -p $(@D)
-> image=test/$$RANDOM
+> image=rhodey/neo4j:$(NEO4J_VERSION)
 > docker build --tag=$$image \
     --build-arg="NEO4J_URI=file:///tmp/$(call tarball,$*,$(NEO4J_VERSION))" \
     $(<D)

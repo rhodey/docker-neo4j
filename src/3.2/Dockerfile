@@ -16,7 +16,14 @@ RUN curl --fail --silent --show-error --location --remote-name ${NEO4J_URI} \
     && mv /var/lib/neo4j-* /var/lib/neo4j \
     && rm ${NEO4J_TARBALL} \
     && mv /var/lib/neo4j/data /data \
-    && ln -s /data /var/lib/neo4j/data \
+    && ln -s /data /var/lib/neo4j/data
+
+ARG GRAPHAWARE_FRAMEWORK=https://products.graphaware.com/download/framework-server-community/graphaware-server-community-all-3.2.6.51.jar
+ARG GRAPHAWARE_TIMETREE=https://products.graphaware.com/download/timetree/graphaware-timetree-3.2.6.51.27.jar
+ARG NEO4J_PLUGIN_DIR=/var/lib/neo4j/plugins
+
+RUN curl --fail --silent --show-error --location -o $NEO4J_PLUGIN_DIR/ga-framework.jar $GRAPHAWARE_FRAMEWORK \
+    && curl --fail --silent --show-error --location -o $NEO4J_PLUGIN_DIR/ga-timetree.jar $GRAPHAWARE_TIMETREE \
     && apk del curl
 
 WORKDIR /var/lib/neo4j
