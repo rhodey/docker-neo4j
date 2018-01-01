@@ -1,6 +1,12 @@
 *NOTE:* Supported images are available in the [official image library](https://hub.docker.com/_/neo4j/) on Docker Hub.
 Please use those for production use.
 
+# Build
+```
+$ export NEO4J_VERSION=3.2.6
+$ make build-community
+```
+
 # Using the Neo4j Docker image
 
 ## Neo4j 2.3
